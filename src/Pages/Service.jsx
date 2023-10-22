@@ -1,7 +1,7 @@
 import React from 'react'
 import img from "../assets/img/service1.png";
 import Button from "../layouts/Button";
-import { Link } from 'react-scroll';
+import { Link } from 'react-router-dom';
 import Heading from '../layouts/Heading';
 import img2 from '../assets/img/service2.png';
 import img3 from '../assets/img/service3.png';

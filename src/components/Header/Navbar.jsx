@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-scroll';
+import { Link } from 'react-router-dom';
 import Button from '../../layouts/Button';
 import img from '../../assets/img/logo2.png';
 

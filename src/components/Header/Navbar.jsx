@@ -25,7 +25,8 @@ const Navbar = () => {
         <div className='hidden lg:flex flex-row items-center gap-4'>
         <Link to='register' spy={true} smooth={true} duration={500} className='cursor-pointer'>
           <Button title="Register" backgroundColor={backgroundColor} /></Link>
-          <Button title="Login" />
+          <Link to='login' spy={true} smooth={true} duration={500} className='cursor-pointer'>
+          <Button title="Login" /></Link>
         </div>
       </div>
     </div>

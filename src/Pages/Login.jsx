@@ -59,7 +59,7 @@ const Login = () => {
                                         </Button>
                                     </div>
                                 </Form>
-                                <p className='mt-3 font-light text-xs'>Don't have an account? <br></br> <Link to='register' spy={true} smooth={true} duration={500} className='cursor-pointer text-textDarkBrown hover:underline'>Create Account</Link></p>
+                                <p className='mt-3 font-light text-xs'>Don't have an account? <br></br> <Link to='/register' spy={true} smooth={true} duration={500} className='cursor-pointer text-textDarkBrown hover:underline'>Create Account</Link></p>
                             </div>
                         </div>
                     </Col>

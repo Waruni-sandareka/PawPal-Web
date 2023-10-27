@@ -20,7 +20,9 @@ const Home = () => {
                 <div className='lg:ml-auto w-full lg:w-2/5'>
                     <img src={img} alt='img'></img>
                 </div>
+                <Service/>
             </div>
+            
         </div>
     );
 };

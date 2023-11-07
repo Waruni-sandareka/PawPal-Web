@@ -1,6 +1,6 @@
 import React from 'react';
 import Button from "../layouts/Button";
-import { Link } from 'react-scroll';
+import { Link } from 'react-router-dom';
 import img from '../assets/img/home2.png';
 import Service from './Service';
 import Contact from './Contact';
@@ -15,8 +15,8 @@ const Home = () => {
                     feathered, and finned friends! 
              </p>
                 <div className='lg:pl-24 mt-10 ml-7'>
-                    <Link>
-                        <Button title='Shop Now' />
+                    <Link to='/booking'>
+                        <Button title='Book Appoinment' />
                     </Link>
                 </div>
                 <div className='lg:ml-auto w-full lg:w-2/5'>

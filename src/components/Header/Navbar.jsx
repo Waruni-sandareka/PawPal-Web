@@ -20,7 +20,7 @@ const Navbar = () => {
           <Link to='service' spy={true} smooth={true} duration={500} className='hover:text-textYellowColor transition-all cursor-pointer'>Service</Link>
           <Link to='/' spy={true} smooth={true} duration={500} className='hover:text-textYellowColor transition-all cursor-pointer'>Products</Link>
           <Link to='/contact' spy={true} smooth={true} duration={500} className='hover:text-textYellowColor transition-all cursor-pointer'>Contact</Link>
-          <Link to='/' spy={true} smooth={true} duration={500} className='hover:text-textYellowColor transition-all cursor-pointer'>About</Link>
+          <Link to='/' spy={true} smooth={true} duration={500} className='hover:text-textYellowColor transition-all cursor-pointer'>Find a Pet</Link>
         </nav>
         <div className='hidden lg:flex flex-row items-center gap-4'>
         <Link to='register' spy={true} smooth={true} duration={500} className='cursor-pointer'>

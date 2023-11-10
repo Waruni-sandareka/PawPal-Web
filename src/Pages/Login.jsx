@@ -4,6 +4,7 @@ import { Link , useNavigate} from 'react-router-dom';
 import loginImg from '../assets/img/loginimg.png';
 import userIcon from '../assets/img/user2.png';
 import axios from 'axios';
+import Navbar from '../components/Header/Navbar';
 
 const Login = () => {
 
@@ -24,21 +25,26 @@ const Login = () => {
     const onSubmit = async (e) => {
         e.preventDefault();
         await axios.post("http://localhost:8080/login",credentials);
-        navigate("/home");
+        navigate("/userdashboard");
     }
 
 
 
 
     return (
-        <div className='lg:min-h-[75vh] flex flex-col justify-center lg:flex-row items-center  bg-backgroundColor'>
-            <Container className='mt-8 text-center lg:flex justify-center'>
+        
+        <div className='min-h-screen flex flex-col lg:flex-row items-center bg-backgroundColor'>
+           
+           <Container className='mt-8 text-center lg:flex justify-center'>
                 <Row>
                     <Col lg='8' className='m-auto'>
+                   <Navbar/>
                         <div className="flex w-4/5 items-center mx-10">
+                       
                             <div className='mt-12 object-contain w-3/6 ml-36'>
                                 <img src={loginImg} alt='LoginImg' />
                             </div>
+                           
                             <div className='form bg-textYellowColor relative w-3/5 rounded-lg shadow-lg px-8 py-10 ml-5 flex flex-col items-center'>
                                 <div className='flex w-16 h-16'>
                                     <img src={userIcon} alt='UserIcon' />

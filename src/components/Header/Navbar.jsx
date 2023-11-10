@@ -17,15 +17,15 @@ const Navbar = () => {
         </div>
         <nav className='hidden lg:flex flex-row items-center gap-8'>
           <Link to='/' spy={true} smooth={true} duration={500} className='hover:text-textYellowColor transition-all cursor-pointer'>Home</Link>
-          <Link to='service' spy={true} smooth={true} duration={500} className='hover:text-textYellowColor transition-all cursor-pointer'>Service</Link>
+          <Link to='../service' spy={true} smooth={true} duration={500} className='hover:text-textYellowColor transition-all cursor-pointer'>Service</Link>
           <Link to='/' spy={true} smooth={true} duration={500} className='hover:text-textYellowColor transition-all cursor-pointer'>Products</Link>
-          <Link to='/contact' spy={true} smooth={true} duration={500} className='hover:text-textYellowColor transition-all cursor-pointer'>Contact</Link>
+          <Link to='../contact' spy={true} smooth={true} duration={500} className='hover:text-textYellowColor transition-all cursor-pointer'>Contact</Link>
           <Link to='/' spy={true} smooth={true} duration={500} className='hover:text-textYellowColor transition-all cursor-pointer'>Find a Pet</Link>
         </nav>
         <div className='hidden lg:flex flex-row items-center gap-4'>
-        <Link to='register' spy={true} smooth={true} duration={500} className='cursor-pointer'>
+        <Link to='../register' spy={true} smooth={true} duration={500} className='cursor-pointer'>
           <Button title="Register" backgroundColor={backgroundColor} /></Link>
-          <Link to='login' spy={true} smooth={true} duration={500} className='cursor-pointer'>
+          <Link to='../login' spy={true} smooth={true} duration={500} className='cursor-pointer'>
           <Button title="Login" /></Link>
         </div>
       </div>

@@ -4,6 +4,7 @@ import { Link , useNavigate } from 'react-router-dom';
 import registerImg from '../assets/img/Question.png';
 import userIcon from '../assets/img/user2.png';
 import axios from 'axios';
+import Navbar from '../components/Header/Navbar';
 
 const Register = () => {
 
@@ -32,6 +33,7 @@ const Register = () => {
 
     return (
         <div className='lg:min-h-[75vh] flex flex-col justify-center lg:flex-row items-center  bg-backgroundColor'>
+            <Navbar/>
             <Container className='mt-8 text-center lg:flex justify-center'>
                 <Row>
                     <Col lg='8' className='m-auto'>

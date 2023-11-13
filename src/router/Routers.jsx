@@ -7,6 +7,8 @@ import Login from '../Pages/Login';
 import Contact from '../Pages/Contact';
 import Booking from '../Pages/Booking';
 import UserDashboard from '../Pages/UserDashboard';
+import PastService from '../Pages/PastService';
+import UpcomingAppoinments from '../Pages/UpcomingAppoinments';
 
 const Routers = () => {
   return (
@@ -19,6 +21,8 @@ const Routers = () => {
           <Route path='/contact' element={<Contact />} />
           <Route path='/booking' element={<Booking />} />
           <Route path='/userdashboard' element={<UserDashboard/>}/>
+          <Route path='/pastservice' element={<PastService/>}/>
+          <Route path='/upcoming' element={<UpcomingAppoinments/>}/>
           
     </Routes>
   )

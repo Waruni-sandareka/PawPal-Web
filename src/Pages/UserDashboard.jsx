@@ -1,13 +1,12 @@
 import React from 'react'
-import Sidebar from '../components/Sidebar/Sidebar'
+import Sidebar from '../components/Sidebar/Sidebar';
+import Header from '../components/Header/Header';
 
 const UserDashboard = () => {
   return (
     <div className='flex'>
       <Sidebar/>
-      <div>
-        
-      </div>
+      <Header/>
     </div>
   )
 }

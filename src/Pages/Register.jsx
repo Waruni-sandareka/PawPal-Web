@@ -26,11 +26,22 @@ const Register = () => {
 
     const onSubmit = async (e) => {
         e.preventDefault();
-        await axios.post("http://localhost:8080/sign-up", user);
-        navigate("/login");
+    
+        try {
+            const res = await axios.post("http://localhost:8080/sign-up", user);
+    
+            if (res.data.code === 1) {
+                alert(res.data.message);
+                navigate("/login");
+            } else {
+                alert(`Error: ${res.data.message}`);
+            }
+        } catch (error) {
+            console.error("Error:", error);
+            alert("An error occurred during the request.");
+        }
     }
-
-
+    
 
     return (
 

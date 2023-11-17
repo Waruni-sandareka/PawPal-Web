@@ -22,12 +22,48 @@ const Login = () => {
 
     }
 
+    // Set the user object in localStorage
+    const setUserInLocalStorage = (user) => {
+        localStorage.setItem('user', JSON.stringify(user));
+    };
+
+    // Get the user object from localStorage
+    const getUserFromLocalStorage = () => {
+        const storedUser = localStorage.getItem('user');
+        return storedUser ? JSON.parse(storedUser) : null;
+    };
+
+    
+
+
     const onSubmit = async (e) => {
         e.preventDefault();
-        await axios.post("http://localhost:8080/sign-in", credentials);
-        navigate("/userdashboard");
-    }
+        try {
+            const res = await axios.post("http://localhost:8080/sign-in", credentials);
+            if (res.data.user === null) {
+                alert(`Error: ${res.data.message}`);
+            }
+            else {
+                if (res.data.code === 1) {
+                    alert(res.data.message);
 
+                    // Save the user object in localStorage
+                    setUserInLocalStorage(res.data.user);
+
+
+                    navigate("/userdashboard");
+                }
+                else {
+                    alert(`Error: ${res.data.message}`);
+                }
+            }
+
+        } catch (error) {
+            console.error("Error:", error);
+            alert("An error occurred during the request.");
+
+        }
+    }
 
     return (
 

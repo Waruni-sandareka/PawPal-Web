@@ -8,7 +8,8 @@ export default {
         btnBackgroundColor: "#FBDA6F",
         textColor: "#000000",
         textYellowColor: "#FBDA6F",
-        textDarkBrown : "#6D0505"
+        textDarkBrown : "#6D0505",
+        backgroundOval : "#FBF7CF"
       },
     },
   },

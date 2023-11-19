@@ -5,13 +5,14 @@ import control from '../../assets/img/control.png';
 import { Link, useNavigate } from "react-router-dom";
 
 const Sidebar = () => {
-  const [open, setOpen] = useState(true);
+  // const [open, setOpen] = useState(true);
   const Menus = [
-    { title: "Home", src: "homeicon", path: "/userdashboard" },
-    { title: "Contact", src: "contact2", path: "/contact" },
+    { title: "Dashboard", src: "homeicon", path: "/userdashboard" },
+    { title: "Your Pets", src: "contact2", path: "/petsprofile" },
     { title: "Past Services", src: "past", path: '/pastservice' },
     { title: "Upcoming Appoinments ", src: "up", path: "/upcoming" },
     { title: "Wellness ", src: "well", path: "/" },
+    { title: "Contact", src: "contact2", path: "/contact" },
     { title: "Help", src: "help" },
   ];
 
@@ -32,7 +33,7 @@ const Sidebar = () => {
   return (
 
     <div
-      className={` ${open ? "w-72" : " w-32"
+      className={` ${open ? "w-full" : " w-full"
         } bg-backgroundColor h-screen p-5  pt-8 relative duration-300 shadow-md`}
     >
       <img
@@ -71,7 +72,7 @@ const Sidebar = () => {
       </ul>
       <div className="mt-11 flex flex-row justify-center">
         <Button
-          className="mt-5 flex justify-center bg-amber-100 hover:bg-amber-200 text-black py-2 px-6 rounded-3xl focus:outline-none focus:ring-1 focus:ring-textDarkBrown"
+          className="mt-5 flex justify-center bg-textYellowColor hover:bg-black hover:text-white text-black py-2 px-8 rounded-3xl font-medium"
           type='submit' onClick={handleLogout}>
           Logout
         </Button>

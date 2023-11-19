@@ -9,6 +9,12 @@ import Booking from '../Pages/Booking';
 import UserDashboard from '../Pages/UserDashboard';
 import PastService from '../Pages/PastService';
 import UpcomingAppoinments from '../Pages/UpcomingAppoinments';
+import PetsProfile from '../Pages/PetsProfile';
+import UserProfile from '../Pages/UserProfile';
+import DayCareService from '../Pages/DayCareService';
+import PetClinicService from '../Pages/PetClinicService';
+import PetAdoptionService from '../Pages/PetAdoptionService';
+import AddPet from '../Pages/AddPet';
 
 const Routers = () => {
   return (
@@ -23,6 +29,12 @@ const Routers = () => {
           <Route path='/userdashboard' element={<UserDashboard/>}/>
           <Route path='/pastservice' element={<PastService/>}/>
           <Route path='/upcoming' element={<UpcomingAppoinments/>}/>
+          <Route path='/petsprofile' element={<PetsProfile/>}/>
+          <Route path='/userprofile' element={<UserProfile/>}/>
+          <Route path='/petclinicservice' element={<PetClinicService/>}/>
+          <Route path='/petadoptionservice' element={<PetAdoptionService/>}/>
+          <Route path='/daycareervice' element={<DayCareService/>}/>
+          <Route path='/addpet' element={<AddPet/>}/>
           
     </Routes>
   )

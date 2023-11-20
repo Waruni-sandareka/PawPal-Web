@@ -3,31 +3,25 @@ import Sidebar from '../components/Sidebar/Sidebar';
 import Header from '../components/Header/Header';
 
 // Replace the following with your actual styles
-const formStyles = 'your-form-styles';
-const headingStyles = 'your-heading-styles';
-const inputGroupStyles = 'your-input-group-styles';
-const labelStyles = 'your-label-styles';
-const inputStyles = 'your-input-styles';
+const formStyles = 'flex flex-col items-center justify-center p-10 border rounded-lg mt-20 mx-10 border-b-3 rounded-3xl border-textYellowColor';
+const inputGroupStyles = 'block mb-4';
+const labelStyles = 'text-black mb-4';
+const inputStyles = 'w-full lg:w-40 ml-8 mt-2 py-1 px-4 pr-4 mx-auto text-base lg:text-sm border border-textDarkBrown rounded-3xl focus:outline-none focus:ring-1 focus:ring-textDarkBrown';
 
 const AddPet = () => {
   const [petImage, setPetImage] = useState('');
   const [petType, setPetType] = useState('');
   const [petName, setPetName] = useState('');
   const [petWeight, setPetWeight] = useState('');
+  const [petSex, setPetSex] = useState('Male');
   const [petSize, setPetSize] = useState('');
   const [petAge, setPetAge] = useState('');
   const [petBreed, setPetBreed] = useState('');
   const [houseTrained, setHouseTrained] = useState('Yes');
   const [friendlyWithChildren, setFriendlyWithChildren] = useState('Yes');
-  const [careInfo, setCareInfo] = useState({
-    pottyBreakfastSchedule: 'Morning',
-    energyLevel: 'Moderate',
-    feedingSchedule: 'Twice a day',
-    canBeLeftAlone: 'Up to 4 hours',
-    medicationType: ['None'],
-    additionalNotes: '',
-  });
-
+  const [energyLevel, setEnergyLevel] = useState('');
+  const [medicationType, setMedicationType] = useState('');
+  
   const handleHouseTrainedChange = (event) => {
     setHouseTrained(event.target.value);
   };
@@ -36,14 +30,10 @@ const AddPet = () => {
     setFriendlyWithChildren(event.target.value);
   };
 
-  const handleCareInfoChange = (event) => {
-    const { name, value } = event.target;
-
-    setCareInfo((prevState) => ({
-      ...prevState,
-      [name]: value,
-    }));
+  const handlePetSex = (event) => {
+    setPetSex(event.target.value);
   };
+
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -56,9 +46,12 @@ const AddPet = () => {
       petSize,
       petAge,
       petBreed,
+      petSex,
       houseTrained,
       friendlyWithChildren,
-      careInfo,
+      energyLevel,
+      medicationType,
+      
     };
 
     console.log(petData);
@@ -71,12 +64,14 @@ const AddPet = () => {
         <div className='col-span-1'><Sidebar /></div>
         <div className='col-span-4 w-full'>
           <Header />
-          <div className='flex justify-center'>
-            <form onSubmit={handleSubmit} className='flex flex-col items-center p-10 border rounded-lg shadow-md'>
-              <h2 className={headingStyles}>Pet Care Booking</h2>
 
+        {/* Form for add pet */}
+          <div className='flex'>
+            <form onSubmit={handleSubmit} className={formStyles}>
+            <div className='grid grid-cols-2'>
+              <div className='col-span-1'>
               <div className={inputGroupStyles}>
-                <label htmlFor="petImage" className='text-gray-600 mb-2'>
+                <label htmlFor="petImage" className={labelStyles}>
                   Pet Image:
                 </label>
                 <input
@@ -89,7 +84,21 @@ const AddPet = () => {
               </div>
 
               <div className={inputGroupStyles}>
-                <label htmlFor="petType" className='text-gray-600 mb-2'>
+                <label htmlFor="petName" className={labelStyles}>
+                  Pet Name:
+                </label>
+                <input
+                  type="text"
+                  id="petName"
+                  name="petName"
+                  value={petName}
+                  onChange={(event) => setPetName(event.target.value)}
+                  className={inputStyles}
+                />
+              </div>
+
+              <div className={inputGroupStyles}>
+                <label htmlFor="petType" className={labelStyles}>
                   Pet Type:
                 </label>
                 <select
@@ -105,22 +114,38 @@ const AddPet = () => {
                 </select>
               </div>
 
-              <div className='flex flex-col mb-4'>
-                <label htmlFor="petName" className='text-gray-600 mb-2'>
-                  Pet Name:
+              <div className={inputGroupStyles}>
+                <label htmlFor="petBreed" className={labelStyles}>
+                  Pet Breed:
                 </label>
                 <input
                   type="text"
-                  id="petName"
-                  name="petName"
-                  value={petName}
-                  onChange={(event) => setPetName(event.target.value)}
+                  id="petBreed"
+                  name="petBreed"
+                  value={petBreed}
+                  onChange={(event) => setPetBreed(event.target.value)}
                   className={inputStyles}
                 />
               </div>
 
-              <div className='flex flex-col mb-4'>
-                <label htmlFor="petWeight" className='text-gray-600 mb-2'>
+              <div className={inputGroupStyles}>
+                <label htmlFor="petSex" className={labelStyles}>
+                  Pet Sex :
+                </label>
+                <select
+                  id="petSex"
+                  name="petSex"
+                  value={petSex}
+                  onChange={handlePetSex}
+                  className={inputStyles}
+                >
+                  <option value="Male">Male</option>
+                  <option value="Female">Female</option>
+                </select>
+              </div>
+
+              <div className={inputGroupStyles}>
+                <label htmlFor="petWeight" className={labelStyles}>
                   Pet Weight:
                 </label>
                 <input
@@ -132,9 +157,11 @@ const AddPet = () => {
                   className={inputStyles}
                 />
               </div>
+              </div>
 
-              <div className='flex flex-col mb-4'>
-                <label htmlFor="petSize" className='text-gray-600 mb-2'>
+              <div className='cols-span-1'>
+              <div className={inputGroupStyles}>
+                <label htmlFor="petSize" className={labelStyles}>
                   Pet Size:
                 </label>
                 <select
@@ -151,8 +178,8 @@ const AddPet = () => {
                 </select>
               </div>
 
-              <div className='flex flex-col mb-4'>
-                <label htmlFor="petAge" className='text-gray-600 mb-2'>
+              <div className={inputGroupStyles}>
+                <label htmlFor="petAge" className={labelStyles}>
                   Pet Age:
                 </label>
                 <input
@@ -165,10 +192,44 @@ const AddPet = () => {
                 />
               </div>
 
-              {/* Add more form elements as needed... */}
+              <div className={inputGroupStyles}>
+                <label htmlFor="energyLevel" className={labelStyles}>
+                  Energy Level:
+                </label>
+                <select
+                  id="energyLevel"
+                  name="energyLevel"
+                  value={energyLevel}
+                  onChange={(event) => setEnergyLevel(event.target.value)}
+                  className={inputStyles}
+                >
+                  <option value="Small">High</option>
+                  <option value="Medium">Medium</option>
+                  <option value="Large">Low</option>
+                  
+                </select>
+              </div>
 
-              <div className='flex flex-col mb-4'>
-                <label htmlFor="houseTrained" className='text-gray-600 mb-2'>
+              <div className={inputGroupStyles}>
+                <label htmlFor="medicationType" className={labelStyles}>
+                  Medication Type:
+                </label>
+                <select
+                  id="medicationType"
+                  name="medicationType"
+                  value={medicationType}
+                  onChange={(event) => setMedicationType(event.target.value)}
+                  className={inputStyles}
+                >
+                  <option value="Pill">Pill</option>
+                  <option value="Topical">Topical</option>
+                  <option value="Injection">Injection</option>
+                  
+                </select>
+              </div>
+
+              <div className={inputGroupStyles}>
+                <label htmlFor="houseTrained" className={labelStyles}>
                   House Trained:
                 </label>
                 <select
@@ -183,8 +244,8 @@ const AddPet = () => {
                 </select>
               </div>
 
-              <div className='flex flex-col mb-4'>
-                <label htmlFor="friendlyWithChildren" className='text-gray-600 mb-2'>
+              <div className={inputGroupStyles}>
+                <label htmlFor="friendlyWithChildren" className={labelStyles}>
                   Friendly with Children:
                 </label>
                 <select
@@ -198,16 +259,16 @@ const AddPet = () => {
                   <option value="No">No</option>
                 </select>
               </div>
-
-              {/* Add more form elements as needed... */}
-
-              <button type="submit">Submit</button>
+              </div>
+              </div>
+              <button type="submit" className=' mt-8'>Submit</button>
+              
             </form>
           </div>
-          </div>
-          </div>
         </div>
-        );
+      </div>
+    </div>
+  );
 };
 
-        export default AddPet;
+export default AddPet;

@@ -27,7 +27,7 @@ const Header = () => {
 
 
   return (
-    <div className='bg-backgroundColor w-full h-16 px-4 flex justify-between items-center shadow-sm'>
+    <div className='bg-backgroundColor w-full h-16 px-4 pl-10 flex justify-between items-center'>
       <div>
         <div className='relative'>
           <AiOutlineSearch fontsize={20} className='text-gray-400 absolute top-1/2 translate-y-2/3 left-3' />

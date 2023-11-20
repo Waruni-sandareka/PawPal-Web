@@ -34,11 +34,11 @@ const Sidebar = () => {
 
     <div
       className={` ${open ? "w-full" : " w-full"
-        } bg-backgroundColor h-screen p-5  pt-8 relative duration-300 shadow-md`}
+        } bg-backgroundColor h-screen p-5  pt-8 relative duration-300`}
     >
       <img
         src={control}
-        className={`absolute cursor-pointer -right-3 top-9 w-7 border-textYellowColor
+        className={`absolute cursor-pointer -right-3 top-9 w-7 shadow-textYellowColor
            border-2 rounded-full  ${!open && "rotate-180"}`}
         onClick={() => setOpen(!open)}
       />

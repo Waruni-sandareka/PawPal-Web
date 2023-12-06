@@ -9,7 +9,9 @@ export default {
         textColor: "#000000",
         textYellowColor: "#FBDA6F",
         textDarkBrown : "#6D0505",
-        backgroundOval : "#FBF7CF"
+        backgroundOval : "#FBF7CF",
+        sidebarColor : "#FBF7CF",
+        chartColor : "#FBF7DF"
       },
     },
   },

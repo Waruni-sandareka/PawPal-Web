@@ -25,7 +25,7 @@ const Header = () => {
 
 
   return (
-    <div className='bg-backgroundColor w-full h-16 px-4 pl-10 flex justify-between items-center'>
+    <div className='bg-sidebarColor w-full h-16 px-4 pl-10 flex justify-between items-center '>
         
       <div className='flex items-center gap-5'>
         <MdChatBubbleOutline  />

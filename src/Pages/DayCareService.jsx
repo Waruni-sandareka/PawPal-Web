@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import img from '../assets/img/petImg0.png';
-import img2 from '../assets/img/petBg.png';
 
 const DayCareService = () => {
   let navigate = useNavigate()
@@ -139,7 +138,7 @@ const DayCareService = () => {
 
 
   return (
-    <div className={`flex items-center justify-center h-full bg-${img2} bg-cover bg-center`}>
+    <div className={`flex items-center justify-center h-full `}>
       <div className="form flex flex-col items-center justify-center bg-textYellowColor relative w-2/5 rounded-2xl shadow-lg px-8 py-5 mt-4 ">
         <form onSubmit={handleSubmit}>
 

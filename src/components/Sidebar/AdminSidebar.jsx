@@ -1,17 +1,17 @@
-import { useState } from "react";
-import logo from '../../assets/img/logo2.png';
+// import { useState } from "react";
+import logo from '../../assets/img/sidebarLogo.png';
 import {Button} from "reactstrap";
-import control from '../../assets/img/control.png';
+// import control from '../../assets/img/control.png';
 import { Link, useNavigate } from "react-router-dom";
 
 const AdminSidebar = () => {
   // const [open, setOpen] = useState(true);
   const Menus = [
     { title: "Dashboard", src: "homeicon", path: "/admindashboard" },
-    { title: "Registered Users", src: "contact2", path: "/admindashboard" },
+    { title: "Registered Users", src: "contact2", path: "/userlist" },
     { title: "Approved Services", src: "past", path: '/admindashboard' },
-    { title: "Upcoming Appoinments ", src: "up", path: "/admindashboard" },
-    { title: "Registered Pets", src: "addpet", path: "/admindashboard" },
+    { title: "Upcoming Appoinments ", src: "up", path: "/appointmentlist" },
+    { title: "Registered Pets", src: "paw1", path: "/petlist" },
     
   ];
 
@@ -33,14 +33,14 @@ const AdminSidebar = () => {
 
     <div
       className={` ${open ? "w-full" : " w-full"
-        } bg-backgroundColor h-screen p-5  pt-8 relative duration-300`}
+        } bg-sidebarColor h-screen p-5  pt-8 relative duration-300`}
     >
-      <img
-        src={control}
+      {/* <img
+        // src={control}
         className={`absolute cursor-pointer -right-3 top-9 w-7 shadow-textYellowColor
            border-2 rounded-full  ${!open && "rotate-180"}`}
         onClick={() => setOpen(!open)}
-      />
+      /> */}
       <div className="flex gap-x-4 items-center">
         <img
           src={logo}

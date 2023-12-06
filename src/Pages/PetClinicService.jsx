@@ -1,54 +1,122 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import axios from 'axios';
+import img from '../assets/img/petImg0.png';
 
 const PetClinicService = () => {
+  let navigate = useNavigate()
+
   const [pets, setPets] = useState([]); // Initialize an empty array to store pets
+  const [selectedPet, setSelectedPet] = useState(null);
   const [appointmentType, setAppointmentType] = useState('');
   const [appointmentDate, setAppointmentDate] = useState('');
   const [appointmentTime, setAppointmentTime] = useState('');
+  const [urgencyLevel, setUrgencyLevel] = useState('');
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
 
+    if (selectedPet == null) {
+      alert('Please select a pet.');
+      return;
+    }
+
     const bookingData = {
-      appointmentType,
-      appointmentDate,
-      appointmentTime,
+      "appointmentType": appointmentType,
+      "appointmentDate": appointmentDate,
+      "appointmentTime": appointmentTime,
+      "pet": selectedPet,
+      "urgencyLevel": urgencyLevel,
     };
 
-    console.log(bookingData);
+    try {
+      const res = await axios.post("http://localhost:8080/book-clinic-appointment", bookingData);
+
+      if (res.data.code === 1) {
+        alert(res.data.message);
+        navigate("/upcoming");
+      } else {
+        alert(`Error: ${res.data.message}`);
+      }
+    } catch (error) {
+      console.error("Error:", error);
+      alert("An error occurred during the request.");
+    }
+
   };
 
   const handleAddPet = () => {
     // Logic to add a new pet to the pets array
   };
 
+  const getUserFromLocalStorage = () => {
+    const storedUser = localStorage.getItem('user');
+    return storedUser ? JSON.parse(storedUser) : null;
+  };
+
+  const user = getUserFromLocalStorage();
+  const userId = user.userId;
+
+  const getAllPets = async () => {
+    try {
+      const res = await axios.get(`http://localhost:8080/getAllPets/${userId}`);
+
+      if (res.data.code === 1) {
+        // Update the state with the list of pets
+        setPets(res.data.pets);
+
+      } else {
+        alert(res.data.message);
+      }
+    } catch (error) {
+      console.error("Error:", error);
+      alert("An error occurred during the request.");
+    }
+  };
+
+  useEffect(() => {
+    // Fetch pets when the component mounts
+    getAllPets();
+  }, []); // Empty dependency array to ensure it only runs once when the component mounts
+
+
+
   const renderPetSelection = () => {
     if (pets.length === 0) {
       // Display 'Add Pet' button
       return (
-        <button onClick={handleAddPet}>Add Pet</button>
+        <Link to='/addpet'><button onClick={handleAddPet}>Add Pet</button></Link>
       );
     } else {
-      // Display a select element to choose from existing pets
+
       return (
-        <select
-          id="petId"
-          name="petId"
-          className="w-full p-2 rounded-lg border border-gray-300"
-        >
+        <div>
           {pets.map((pet) => (
-            <option key={pet.id} value={pet.id}>
+            <label key={pet.petId} className="flex items-center mb-2">
+              <input
+                type="radio"
+                id={`petId${pet.petId}`}
+                name="petId"
+                className="mr-4"
+                value={pet.petId}
+                onChange={(event) => setSelectedPet(pets.find((p) => p.petId === parseInt(event.target.value)))}
+              />
+              <img src={img} className='w-40 h-30 flex flex-col items-center mx-2"' />
               {pet.name}
-            </option>
+            </label>
           ))}
-        </select>
+        </div>
       );
+      
     }
   };
 
   return (
-    <div className="form bg-textYellowColor relative w-3/5 rounded-lg shadow-lg px-8 py-10 ml-5 flex flex-col items-center">
+    <div className="form bg-backgroundColor relative w-3/5 rounded-lg shadow-lg px-8 py-10 ml-5 flex flex-col items-center">
       <form onSubmit={handleSubmit}>
+
+        {renderPetSelection()}
+
         <div className="flex flex-col mb-4">
           <label htmlFor="appointmentType" className="text-gray-600 mb-2 block">
             Appointment Type:
@@ -62,8 +130,6 @@ const PetClinicService = () => {
           >
             <option value="Checkup">Checkup</option>
             <option value="Vaccination">Vaccination</option>
-            <option value="Grooming">Grooming</option>
-            <option value="Boarding">Boarding</option>
           </select>
         </div>
 
@@ -90,12 +156,27 @@ const PetClinicService = () => {
             id="appointmentTime"
             name="appointmentTime"
             value={appointmentTime}
-            onChange={(event) => setAppointmentTime(event.target.value)}
+            onChange={(event) => setAppointmentTime(event.target.value + ":00")}
             className="w-full p-2 rounded-lg border border-gray-300 block"
           />
         </div>
 
-        {renderPetSelection()}
+        <div className="flex flex-col mb-4">
+          <label htmlFor="urgencyLevel" className="text-gray-600 mb-2 block">
+            Urgency Level:
+          </label>
+          <select
+            id="urgencyLevel"
+            name="urgencyLevel"
+            value={urgencyLevel}
+            onChange={(event) => setUrgencyLevel(event.target.value)}
+            className="w-full p-2 rounded-lg border border-gray-300"
+          >
+            <option value="Normal">Normal</option>
+            <option value="Urgent">Urgent</option>
+            <option value="Emergency">Emergency</option>
+          </select>
+        </div>
 
         <button
           type="submit"

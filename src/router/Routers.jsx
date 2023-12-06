@@ -15,6 +15,7 @@ import DayCareService from '../Pages/DayCareService';
 import PetClinicService from '../Pages/PetClinicService';
 import PetAdoptionService from '../Pages/PetAdoptionService';
 import AddPet from '../Pages/AddPet';
+import AdminDashboard from '../Pages/AdminDashboard';
 
 const Routers = () => {
   return (
@@ -33,8 +34,9 @@ const Routers = () => {
           <Route path='/userprofile' element={<UserProfile/>}/>
           <Route path='/petclinicservice' element={<PetClinicService/>}/>
           <Route path='/petadoptionservice' element={<PetAdoptionService/>}/>
-          <Route path='/daycareervice' element={<DayCareService/>}/>
+          <Route path='/daycareservice' element={<DayCareService/>}/>
           <Route path='/addpet' element={<AddPet/>}/>
+          <Route path='/admindashboard' element={<AdminDashboard/>}/>
           
     </Routes>
   )

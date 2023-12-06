@@ -33,11 +33,32 @@ const Login = () => {
         return storedUser ? JSON.parse(storedUser) : null;
     };
 
-    
+    const validateEmail = (email) => {
+        const regex = /^[a-zA-Z0-9.+_-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+        return regex.test(email);
+    };
+
+    const validatePassword = (password) => {
+        const regex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[\W_])(?!.*\s).{8,}$/;
+        return regex.test(password);
+    };
 
 
     const onSubmit = async (e) => {
         e.preventDefault();
+        const isEmailValid = validateEmail(email);
+        const isPasswordValid = validatePassword(password);
+
+        if (!isEmailValid) {
+            alert('Invalid email format');
+            return;
+        }
+
+        if (!isPasswordValid) {
+            alert('Password must be at least 8 characters long and contain at least one lowercase letter, one uppercase letter, one number, and one special character');
+            return;
+        }
+
         try {
             const res = await axios.post("http://localhost:8080/sign-in", credentials);
             if (res.data.user === null) {
@@ -51,7 +72,7 @@ const Login = () => {
                     setUserInLocalStorage(res.data.user);
 
 
-                    navigate("/userdashboard");
+                    navigate("/admindashboard");
                 }
                 else {
                     alert(`Error: ${res.data.message}`);

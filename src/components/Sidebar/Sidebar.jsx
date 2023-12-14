@@ -1,5 +1,5 @@
 import { useState } from "react";
-import logo from '../../assets/img/logo2.png';
+import logo from '../../assets/img/sidebarLogo.png';
 import {Button} from "reactstrap";
 import control from '../../assets/img/control.png';
 import { Link, useNavigate } from "react-router-dom";
@@ -34,7 +34,7 @@ const Sidebar = () => {
 
     <div
       className={` ${open ? "w-full" : " w-full"
-        } bg-backgroundColor h-screen p-5  pt-8 relative duration-300`}
+        } bg-sidebarColor h-screen p-5  pt-8 relative duration-300`}
     >
       <img
         src={control}

@@ -1,19 +1,25 @@
 import React, { useState, useEffect } from 'react';
 import AdminSidebar from '../components/Sidebar/AdminSidebar';
 import AdminHeader from '../components/Header/AdminHeader';
+import axios from 'axios';
 
 const AppointmentList = () => {
     // State to store the appointment data
     const [appointments, setAppointments] = useState([]);
 
+    const getAllAppointments = async () => {
+        try {
+            const response = await axios.get('http://localhost:8080/getAllAppointmentList');
+            setAppointments(response.data);
+        } catch (error) {
+            console.error('Error fetching user data:', error);
+        }
+    };
+
     // Effect to fetch appointment data when the component mounts
     useEffect(() => {
-        // Fetch appointment data from your API or backend
-        // Replace the API_URL with the actual endpoint
-        fetch('API_URL/appointments')
-            .then(response => response.json())
-            .then(data => setAppointments(data))
-            .catch(error => console.error('Error fetching appointment data:', error));
+        // Call the function to fetch user data
+        getAllAppointments();
     }, []);
 
     // Function to handle appointment deletion
@@ -50,14 +56,14 @@ const AppointmentList = () => {
                         </thead>
                         <tbody>
                             {appointments.map(appointment => (
-                                <tr key={appointment.id}>
-                                    <td>{appointment.date}</td>
-                                    <td>{appointment.time}</td>
-                                    <td>{appointment.type}</td>
-                                    <td>{appointment.petId}</td>
+                                <tr key={appointment.appointmentId}>
+                                    <td>{appointment.appointmentDate}</td>
+                                    <td>{appointment.appointmentTime}</td>
+                                    <td>{appointment.appointmentType}</td>
+                                    <td>{appointment.pet.petId}</td>
                                     <td>
-                                        <button onClick={() => handleApprove(appointment.id)}>Approve</button>
-                                        <button onClick={() => handleDelete(appointment.id)}>Delete</button>
+                                        <button className='mr-4 rounded-3xl text-black bg-green-400 px-4 py-2 mt-3 hover:text-white hover:bg-black' onClick={() => handleApprove(appointment.id)}>Approve</button>
+                                        <button className='rounded-3xl text-black bg-red-400 px-4 py-2 mt-3 hover:text-white hover:bg-black' onClick={() => handleDelete(appointment.id)}>Decline</button>
                                     </td>
                                 </tr>
                             ))}

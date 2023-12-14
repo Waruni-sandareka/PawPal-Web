@@ -21,6 +21,7 @@ import AddPetForAdopt from '../Pages/AddPetForAdopt';
 import UserList from '../Pages/UserList';
 import PetList from '../Pages/PetList';
 import AppointmentList from '../Pages/AppointmentList';
+import PetProductService from '../Pages/PetProductService';
 
 const Routers = () => {
   return (
@@ -47,6 +48,7 @@ const Routers = () => {
           <Route path='/userlist' element={<UserList/>}/>
           <Route path='/petlist' element={<PetList/>}/>
           <Route path='/appointmentlist' element={<AppointmentList/>}/>
+          <Route path='/petproductservice' element={<PetProductService/>}/>
           
     </Routes>
   )

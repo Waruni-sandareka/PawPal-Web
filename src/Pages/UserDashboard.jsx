@@ -60,7 +60,7 @@ const UserDashboard = () => {
               <div className='rounded-3xl  bg-backgroundColor ml-5 shadow-md  hover:bg-textYellowColor'>
                 <div className='p-5 flex flex-col'>
                   <div className='rounded-3xl overflow-hidden border border-textDarkBrown'>
-                    <Link to="/petadoptionservice">
+                    <Link to="/petproductservice">
                       <img src={productImg} /></Link>
                   </div>
                   <h1 className=' text-lg text-textDarkBrown mt-8'>Providing compassionate.</h1>
